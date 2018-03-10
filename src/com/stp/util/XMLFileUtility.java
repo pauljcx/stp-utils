@@ -37,7 +37,8 @@ import java.lang.reflect.Array;
  * HISTORY: Version 1.0 created utility class for saving and loading objects as xml text files
  */
 public final class XMLFileUtility {
-	private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(XMLFileUtility.class.getName());
+	public static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(XMLFileUtility.class.getName());
 	private static final Map<String, Class<?>> typeMap = new HashMap<String, Class<?>>();
 	private static final Map<Class<?>, Class<?>> primMap = new HashMap<Class<?>, Class<?>>();
 	private static final Map<Integer, String> charMap = new HashMap<Integer, String>();
