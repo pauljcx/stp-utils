@@ -202,7 +202,7 @@ public class JavaIO {
 				}
 				return;
 			}
-			if (objClass.equals(Short.TYPE) {
+			if (objClass.equals(Short.TYPE)) {
 				os.write((byte)2);
 				for (Object obj : set) {
 					os.write(JavaIO.convertToBytes((Short)obj));

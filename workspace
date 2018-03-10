@@ -3,6 +3,7 @@
         <Folder name="util">
             <File name="src\com\stp\util\Configuration.java" />
             <File name="src\com\stp\util\CustomDateFormat.java" />
+            <File name="src\com\stp\util\DatabaseManager.java" />
             <File name="src\com\stp\util\HtmlDocument.java" />
             <File name="src\com\stp\util\HtmlElement.java" />
             <File name="src\com\stp\util\JavaIO.java" />
