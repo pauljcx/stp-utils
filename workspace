@@ -1,6 +1,7 @@
 <NotepadPlus>
     <Project name="stp-utils">
         <Folder name="util">
+            <File name="src\com\stp\util\Configuration.java" />
             <File name="src\com\stp\util\CustomDateFormat.java" />
             <File name="src\com\stp\util\JavaIO.java" />
             <File name="src\com\stp\util\MersenneTwisterFast.java" />
