@@ -1,0 +1,12 @@
+<NotepadPlus>
+    <Project name="stp-utils">
+        <Folder name="util">
+            <File name="src\com\stp\util\CustomDateFormat.java" />
+            <File name="src\com\stp\util\XMLFileUtility.java" />
+            <File name="src\com\stp\util\XMLObject.java" />
+        </Folder>
+        <File name="build.xml" />
+        <File name="LICENSE" />
+        <File name="README.md" />
+    </Project>
+</NotepadPlus>

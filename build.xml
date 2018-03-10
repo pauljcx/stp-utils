@@ -1,0 +1,21 @@
+<project name="STP Utilities" default="make" basedir=".">
+	<path id="classpath">
+		<fileset dir="libs">
+			<include name="**/*.jar"/>
+		</fileset>
+    </path>
+	
+	<target name="make">
+		<mkdir dir="build"/>
+		<javac srcdir="src" destdir="build" includeantruntime="false" fork="yes" executable="c:/dev/jdk7u80/bin/javac" classpathref="classpath">
+			<compilerarg value="-Xlint:deprecation"/>
+			<compilerarg value="-Xlint:unchecked"/>
+		</javac>
+		<jar jarfile="stp-utils.jar" basedir="build">
+		</jar>
+	</target>
+	
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+</project>
