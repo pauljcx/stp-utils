@@ -279,7 +279,8 @@ public final class XMLFileUtility {
 				}
 				child = xmlObject[i].getClass().getSimpleName();
 				childInfo = "\t<object class=\"" + child + "\">\n";
-				for (String nodeName : xmlObject[i].getPropertyNames()) {
+				for (int p = 0; p < xmlObject[i].getPropertyCount(); p++) {
+					String nodeName = xmlObject[i].getPropertyName(p);
 					Object nodeValue = xmlObject[i].getProperty(nodeName);
 					if (nodeValue != null) {
 						childInfo = childInfo + "\t\t<param name=\"" + nodeName + "\" class=\"" + nodeValue.getClass().getSimpleName() + "\">" + encode(nodeValue) + "</param>\n";

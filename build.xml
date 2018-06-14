@@ -7,7 +7,7 @@
 	
 	<target name="make">
 		<mkdir dir="build"/>
-		<javac srcdir="src" destdir="build" includeantruntime="false" fork="yes" executable="c:/dev/jdk7u80/bin/javac" classpathref="classpath">
+		<javac srcdir="src" destdir="build" includeantruntime="false" fork="yes" executable="c:/dev/java/jdk7u80/bin/javac" classpathref="classpath">
 			<compilerarg value="-Xlint:deprecation"/>
 			<compilerarg value="-Xlint:unchecked"/>
 		</javac>

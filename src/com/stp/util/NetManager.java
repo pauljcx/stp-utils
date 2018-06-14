@@ -36,6 +36,7 @@ public class NetManager {
 	public static final String getWebResponse(String urlString) throws Exception {
 		URL website = new URL(urlString);
 		URLConnection resource = website.openConnection();
+		resource.setReadTimeout(5000);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
 		String response = reader.readLine();
 		reader.close();

@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.HashMap;
@@ -45,19 +46,48 @@ public class Configuration {
 	private static Configuration instance = null;
 	
 	public static class DataStore implements XMLObject {
-		public HashMap<String, Object> elements = new HashMap<String, Object>();
+		public ArrayList<XMLProperty> properties = new ArrayList<XMLProperty>();
 		public DataStore() {
 		}
-		public String[] getPropertyNames()	{
-			return elements.keySet().toArray(new String[elements.size()]);
-		}
-		public Object getProperty(String name) {
-			return elements.get(name);
-		}
-		public void setProperty(String name, Object value, String className) {
-			if (value != null) {
-				elements.put(name, value);
+		public String getPropertyName(int index) {
+			if (index >= 0 && index < properties.size()) {
+				return properties.get(index).getKey();
+			} else {
+				return "none";
 			}
+		}
+		public int getPropertyCount()	{
+			return properties.size();
+		}
+		public Object getProperty(String key) {
+			for (XMLProperty p : properties) {
+				if (p.getKey().equals(key)) {
+					return p.getValue();
+				}
+			}
+			return null;
+		}
+		public void setProperty(String key, Object value) {
+			this.setProperty(key, value, "");
+		}
+		public void setProperty(String key, Object value, String valueClass) {
+			if (value != null) {
+				for (XMLProperty p : properties) {
+					if (p.getKey().equals(key)) {
+						p.setValue(value);
+						return;
+					}
+				}
+				properties.add(new XMLProperty(key, value));
+			}
+		}
+		public boolean remove(String key) {
+			for (XMLProperty p : properties) {
+				if (p.getKey().equals(key)) {
+					return properties.remove(p);
+				}
+			}
+			return false;
 		}
 	}
 	
@@ -110,23 +140,10 @@ public class Configuration {
 		}
 	}
 	public int getSize() {
-		return data.elements.size();
-	}
-	public Set<String> getAllKeys() {
-		return data.elements.keySet();
-	}
-	public String getSValue(String key) {
-		return "" + getValue(key);
-	}
-	public String[] getSValues(String[] keys) {
-		String[] values = new String[keys.length];
-		for (int k = 0; k < keys.length; k++) {
-			values[k] = getSValue(keys[k]);
-		}
-		return values;
+		return data.getPropertyCount();
 	}
 	public Object getValue(String key) {
-		return data.elements.get(key);
+		return data.getProperty(key);
 	}
 	public Object getValue(String key, Object defaultValue) {
 		Object value = getValue(key);
@@ -195,7 +212,7 @@ public class Configuration {
 		}
 	}
 	public void setValue(String key, Object value) {
-		data.elements.put(key, value);
+		data.setProperty(key, value);
 	}
 	public void setEncryptedValue(String key, String value) {
 		try {
@@ -205,7 +222,7 @@ public class Configuration {
 		}
 	}
 	public boolean remove(String key) {
-		return data.elements.remove(key) != null;
+		return data.remove(key);
 	}
 	private String encrypt(String str, SecretKeySpec keySpec) throws Exception {
 		// Encode the string into bytes using utf-8
@@ -215,7 +232,7 @@ public class Configuration {
 		Cipher cipher = Cipher.getInstance("DES");
 		cipher.init(Cipher.ENCRYPT_MODE, keySpec);
 		byte[] encoded = cipher.doFinal(utf8);
-		
+
 		// Encode bytes to hex string
 		StringBuilder sb = new StringBuilder();
 		for (byte b : encoded) {

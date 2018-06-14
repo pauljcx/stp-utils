@@ -10,8 +10,10 @@
             <File name="src\com\stp\util\JavaIO.java" />
             <File name="src\com\stp\util\NetManager.java" />
             <File name="src\com\stp\util\MersenneTwisterFast.java" />
+            <File name="src\com\stp\util\SwingMacros.java" />
             <File name="src\com\stp\util\XMLFileUtility.java" />
             <File name="src\com\stp\util\XMLObject.java" />
+            <File name="src\com\stp\util\XMLProperty.java" />
         </Folder>
         <File name="build.xml" />
         <File name="LICENSE" />

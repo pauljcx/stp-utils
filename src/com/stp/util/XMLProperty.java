@@ -21,9 +21,36 @@
  * SOFTWARE.
  */
 package com.stp.util;
-public interface XMLObject {
-	public abstract int getPropertyCount();
-	public abstract String getPropertyName(int index);
-	public abstract Object getProperty(String name);
-	public abstract void setProperty(String name, Object value, String className);
+public class XMLProperty {
+	private String key = "";
+	private Object value = null;
+
+	public XMLProperty(String key, Object value) {
+		this.key = key;
+		this.value = value;
+	}
+	public String getKey() {
+		return key;
+	}
+	public Object getValue() {
+		return value;
+	}
+	public void setValue(Object value) {
+		this.value = value;
+	}
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof XMLProperty) {
+			return ((XMLProperty)other).getKey().equals(key);
+		}
+		return false;
+	}
+	@Override
+	public int hashCode() {
+		return key.hashCode();
+	}
+	@Override
+	public String toString() {
+		return key + "=" + value;
+	}
 }

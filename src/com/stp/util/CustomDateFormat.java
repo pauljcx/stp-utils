@@ -42,7 +42,9 @@ public class CustomDateFormat extends SimpleDateFormat {
 	public static final String[] NUMERICMONTHS = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
 	
 	public static final SimpleDateFormat FULL_FORMAT = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+	public static final SimpleDateFormat UNIFORM_DATE_TIME = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
 	public static final SimpleDateFormat STANDARD_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
+	public static final SimpleDateFormat REVERSE_STANDARD = new SimpleDateFormat("yyyy/MM/dd");
 	public static final SimpleDateFormat SHORT_FORMAT = new SimpleDateFormat("MM/dd/yy");
 	public static final SimpleDateFormat DASH_FORMAT = new SimpleDateFormat("MM-dd-yy");
 	public static final SimpleDateFormat UNDELIMITED_FORMAT = new SimpleDateFormat("MMddyyyy");
@@ -99,6 +101,8 @@ public class CustomDateFormat extends SimpleDateFormat {
 				return new Date(Long.MAX_VALUE);
 			} else if (input.length() == 28) {
 				return FULL_FORMAT.parse(input);
+			} else if (input.length() == 19) {
+				return UNIFORM_DATE_TIME.parse(input);
 			} else if (input.length() == 10) {
 				return STANDARD_FORMAT.parse(input);
 			} else if (input.length() == 8) {
